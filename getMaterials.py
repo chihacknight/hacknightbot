@@ -13,7 +13,7 @@ def getVerbs():
         if r.content.decode('utf-8').endswith('ing'):
             words.append(r.content.decode('utf-8'))
             print('got a word: %s' % r.content)
-    with open('verbs.json', 'w') as f:
+    with open('json_data/verbs.json', 'w') as f:
         f.write(json.dumps(words))
 
 def getNounPhrases():
@@ -28,32 +28,32 @@ def getNounPhrases():
         r = requests.post('{0}/RandomPhrase'.format(url), data=data)
         words.append(r.content.decode('utf-8'))
         print('got a word: %s' % r.content)
-    with open('noun_phrases.json', 'a') as f:
+    with open('json_data/noun_phrases.json', 'a') as f:
         f.write(json.dumps(words))
 
 def getAgencies():
     agencies = []
-    with open('USGOV.csv', 'r') as f:
+    with open('raw_data/USGOV.csv', 'r') as f:
         reader = csv.reader(f)
         agencies = [r[0] for r in reader]
-    with open('agencies.json', 'w') as f:
+    with open('json_data/agencies.json', 'w') as f:
         f.write(json.dumps(agencies))
 
 def getOrgs():
     orgs = []
-    with open('NONPROFITS.csv', 'r') as f:
+    with open('raw_data/NONPROFITS.csv', 'r') as f:
         reader = csv.reader(f)
         next(reader)
         orgs = [o[1] for o in reader]
-    with open('orgs.json', 'w') as f:
+    with open('json_data/orgs.json', 'w') as f:
         f.write(json.dumps(orgs))
 
 def getServices():
     services = []
-    with open('services.txt', 'r') as f:
+    with open('raw_data/services.txt', 'r') as f:
         reader = csv.reader(f)
         services = [r[0] for r in reader]
-    with open('services.json', 'w') as f:
+    with open('json_data/services.json', 'w') as f:
         f.write(json.dumps(services))
 
 def getResources():
@@ -65,7 +65,7 @@ def getResources():
     for row in reader:
         if row[0] and row[2]:
             keepers.append({'title': row[0], 'url': row[2]})
-    with open('resources.json', 'w') as f:
+    with open('json_data/resources.json', 'w') as f:
         f.write(json.dumps(keepers))
 
 if __name__ == "__main__":

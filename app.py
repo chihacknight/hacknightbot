@@ -12,21 +12,21 @@ SLACK_REALTIME_ENDPOINT = 'https://slack.com/api/rtm.start'
 
 def generateDataProject():
     madlib = 'You could use {dataset_name} ({dataset_link}) to get a better understanding of {service}'
-    random_resource = random.choice(json.load(open('resources.json')))
+    random_resource = random.choice(json.load(open('json_data/resources.json')))
     params = {
         'dataset_name': random_resource['title'],
         'dataset_link': random_resource['url'],
-        'service': random.choice(json.load(open('services.json'))),
+        'service': random.choice(json.load(open('json_data/services.json'))),
     }
     return madlib.format_map(params)
 
 def generateAppIdea():
     madlib = 'An app for {verb} the {noun_phrase} of the {agency} & the {org}'
     params = {
-        'verb': random.choice(json.load(open('verbs.json'))),
-        'noun_phrase': random.choice(json.load(open('noun_phrases.json'))),
-        'agency': random.choice(json.load(open('agencies.json'))),
-        'org': random.choice(json.load(open('orgs.json')))
+        'verb': random.choice(json.load(open('json_data/verbs.json'))),
+        'noun_phrase': random.choice(json.load(open('json_data/noun_phrases.json'))),
+        'agency': random.choice(json.load(open('json_data/agencies.json'))),
+        'org': random.choice(json.load(open('json_data/orgs.json')))
     }
     return madlib.format_map(params)
 
