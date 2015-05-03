@@ -1,6 +1,7 @@
 import requests
 import json
 import csv
+from io import StringIO
 
 url = 'http://watchout4snakes.com/wo4snakes/Random'
 
@@ -47,8 +48,30 @@ def getOrgs():
     with open('orgs.json', 'w') as f:
         f.write(json.dumps(orgs))
 
+def getServices():
+    services = []
+    with open('services.txt', 'r') as f:
+        reader = csv.reader(f)
+        services = [r[0] for r in reader]
+    with open('services.json', 'w') as f:
+        f.write(json.dumps(services))
+
+def getResources():
+    resources = requests.get('https://docs.google.com/spreadsheet/pub?key=0AtbqcVh3dkAqdDZFaTlwRlBDczVGbUtJUnNwVnZ2ZVE&output=csv')
+    resources = StringIO(resources.content.decode('utf-8'))
+    reader = csv.reader(resources)
+    header = next(reader)
+    keepers = []
+    for row in reader:
+        if row[0] and row[2]:
+            keepers.append({'title': row[0], 'url': row[2]})
+    with open('resources.json', 'w') as f:
+        f.write(json.dumps(keepers))
+
 if __name__ == "__main__":
     # getVerbs()
     # getNounPhrases()
-    getAgencies()
-    getOrgs()
+    # getAgencies()
+    # getOrgs()
+    # getResources()
+    getServices()

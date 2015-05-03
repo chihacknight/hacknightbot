@@ -10,6 +10,16 @@ SLACK_API_KEY = os.environ['SLACK_API_KEY']
 SLACK_AUTH_TOKEN = os.environ['SLACK_AUTH_TOKEN']
 SLACK_REALTIME_ENDPOINT = 'https://slack.com/api/rtm.start'
 
+def generateDataProject():
+    madlib = 'You could use {dataset_name} ({dataset_link}) to get a better understanding of {service}'
+    random_resource = random.choice(json.load(open('resources.json')))
+    params = {
+        'dataset_name': random_resource['title'],
+        'dataset_link': random_resource['url'],
+        'service': random.choice(json.load(open('services.json'))),
+    }
+    return madlib.format_map(params)
+
 def generateAppIdea():
     madlib = 'An app for {verb} the {noun_phrase} of the {agency} & the {org}'
     params = {
@@ -35,11 +45,16 @@ if __name__ == "__main__":
     while True:
         result = json.loads(ws.recv())
         if result['type'] == 'message' and not result.get('subtype'):
-            channel_name = channel_lookup[result['channel']]
-            user_name = user_lookup[result['user']]
+            channel_name = channel_lookup.get(result['channel'], 'general')
+            user_name = user_lookup.get(result['user'], '')
             if 'app me' in result['text'].lower():
                 message = generateAppIdea()
                 slack.chat.post_message('#%s' % channel_name, 
                                         "Here's an idea, {0} \n {1}".format(user_name, message), 
+                                        username='hack_night_bot')
+            if 'data project' in result['text'].lower():
+                message = generateDataProject()
+                slack.chat.post_message('#%s' % channel_name,
+                                        "Here's an idea, {0} \n {1}".format(user_name, message),
                                         username='hack_night_bot')
 
