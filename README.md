@@ -7,7 +7,7 @@ A Slack bot to generate amazing ideas.
 You need two kinds of keys from Slack: the API key for a bot user and an Auth
 token for the team that you're wanting to post the amazing ideas into.
 
-** To get an API Key **
+**To get an API Key**
 
 1. Login to your Slack team at {subdomain}.slack.com and click the settings
 thing in the upper left (it'll have your team's name on it) and then click
@@ -15,14 +15,14 @@ thing in the upper left (it'll have your team's name on it) and then click
 2. Scroll down and find the "Bots" integration. Click "Add".
 3. Give your bot a name, etc and then grab the API Key.
 
-** To get an auth token **
+**To get an auth token**
 
 1. Go here: [https://api.slack.com/web](https://api.slack.com/web), scroll down
 to the bottom and find the list of teams that you belong to.
 2. Click the button to issue a token for the team that you want to put your bot
 in and grab the token.
 
-** Run the app **
+**Run the app**
 
 This app was developed using Python 3.4.3 but I'm pretty sure it'll work in
 Python 2.7.x as well. Either way, get yourself a virtual enviromnent and
