@@ -37,8 +37,6 @@ if __name__ == "__main__":
     ws = websocket.WebSocket()
     ws.connect(socket.json()['url'])
 
-    slack.api_token = SLACK_API_KEY
-
     while True:
         result = json.loads(ws.recv())
         message_id = 1
