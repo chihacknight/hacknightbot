@@ -4,16 +4,8 @@ A Slack bot to generate amazing ideas.
 
 ### Run it locally
 
-You need two kinds of keys from Slack: the API key for a bot user and an Auth
-token for the team that you're wanting to post the amazing ideas into.
-
-**To get an API Key**
-
-1. Login to your Slack team at {subdomain}.slack.com and click the settings
-thing in the upper left (it'll have your team's name on it) and then click
-"Configure Integrations".
-2. Scroll down and find the "Bots" integration. Click "Add".
-3. Give your bot a name, etc and then grab the API Key.
+You need to get an Auth token for the team that you're wanting to post the
+amazing ideas into.
 
 **To get an auth token**
 
@@ -39,16 +31,14 @@ $ mkvirtualenv bot
 $ pip install -r requirements.txt
 ```
 
-In order for the app to run, it needs the API key and auth token that you just
-got set as environmental variables. So, before you can run it, you'll need to
-set those:
+In order for the app to run, it needs the auth token that you just got set as
+an environmental variable. So, before you can run it, you'll need to set it:
 
 ``` bash
-$ export SLACK_API_KEY='theapikey'
 $ export SLACK_AUTH_TOKEN='theauthtoken'
 ```
 
-To make those stick around between terminal sessions, you can add those lines
+To make those stick around between terminal sessions, you can add that line
 into your ``.bashrc`` file (or similar) and ``source`` it:
 
 ``` bash 

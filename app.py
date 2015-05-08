@@ -1,12 +1,9 @@
 import os
 import requests
-import slack
-import slack.chat
 import websocket
 import json
 import random
 
-SLACK_API_KEY = os.environ['SLACK_API_KEY']
 SLACK_AUTH_TOKEN = os.environ['SLACK_AUTH_TOKEN']
 SLACK_REALTIME_ENDPOINT = 'https://slack.com/api/rtm.start'
 
@@ -44,17 +41,25 @@ if __name__ == "__main__":
 
     while True:
         result = json.loads(ws.recv())
+        message_id = 1
         if result['type'] == 'message' and not result.get('subtype'):
             channel_name = channel_lookup.get(result['channel'], 'general')
             user_name = user_lookup.get(result['user'], '')
+            formatted = None
             if 'app me' in result['text'].lower():
                 message = generateAppIdea()
-                slack.chat.post_message('#%s' % channel_name, 
-                                        "Here's an idea, {0} \n {1}".format(user_name, message), 
-                                        username='hack_night_bot')
+                formatted = "Here's an idea, {0} \n {1}".format(user_name, message)
+
             if 'data project' in result['text'].lower():
                 message = generateDataProject()
-                slack.chat.post_message('#%s' % channel_name,
-                                        "Here's an idea, {0} \n {1}".format(user_name, message),
-                                        username='hack_night_bot')
+                formatted = "Here's an idea, {0} \n {1}".format(user_name, message)
+            if formatted:
+                postback = {
+                    'id': message_id,
+                    'type': 'message',
+                    'channel': result['channel'],
+                    'text': formatted,
+                }
+                ws.send(json.dumps(postback))
+                message_id += 1
 
