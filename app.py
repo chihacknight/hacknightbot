@@ -40,7 +40,7 @@ if __name__ == "__main__":
     while True:
         result = json.loads(ws.recv())
         message_id = 1
-        if result['type'] == 'message' and not result.get('subtype'):
+        if result.get('type') == 'message' and not result.get('subtype'):
             channel_name = channel_lookup.get(result['channel'], 'general')
             user_name = user_lookup.get(result['user'], '')
             formatted = None
