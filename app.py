@@ -51,6 +51,12 @@ if __name__ == "__main__":
             if 'data project' in result['text'].lower():
                 message = generateDataProject()
                 formatted = "Here's an idea, {0} \n {1}".format(user_name, message)
+
+            bad_phrases = ['you guys', 'hey guys', 'hi guys', 'sup guys', 'guys,', 'guys.']
+            if any(bad_phrase in result['text'].lower() for bad_phrase in bad_phrases):
+                alternatives = ['peeps', 'nerds', 'folks']
+                formatted = "did ya mean %s?" % random.choice(alternatives)
+
             if formatted:
                 postback = {
                     'id': message_id,
