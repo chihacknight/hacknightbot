@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
             bad_phrases = ['you guys', 'hey guys', 'hi guys', 'sup guys', 'guys,', 'guys.']
             if any(bad_phrase in result['text'].lower() for bad_phrase in bad_phrases):
-                alternatives = ['peeps', 'nerds', 'folks', 'y\'all', 'youse']
+                alternatives = ['peeps', 'nerds', 'folks', 'y\'all', 'youse', 'wondeful people']
                 formatted = "did ya mean %s?" % random.choice(alternatives)
 
             if formatted:
