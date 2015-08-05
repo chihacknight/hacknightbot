@@ -57,6 +57,11 @@ if __name__ == "__main__":
                 alternatives = ['peeps', 'nerds', 'folks', 'y\'all', 'youse']
                 formatted = "did ya mean %s?" % random.choice(alternatives)
 
+            acks = ['aws','js','sql','ds']
+            if any(ack in result['text'].lower() for ack in acks):
+                formatted = "Would you mind explaining what %s means? - @jpvelez ghost" % ack
+
+
             if formatted:
                 postback = {
                     'id': message_id,
