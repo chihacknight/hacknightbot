@@ -55,14 +55,14 @@ if __name__ == "__main__":
 
             bad_phrases = ['you guys', 'hey guys', 'hi guys', 'sup guys', 'guys,', 'guys.']
             if any(bad_phrase in result['text'].lower() for bad_phrase in bad_phrases):
-                alternatives = ['peeps', 'nerds', 'folks', 'y\'all', 'youse', 'wondeful people']
+                alternatives = ['peeps', 'nerds', 'folks', 'y\'all', 'youse', 'wonderful people']
                 formatted = "did ya mean %s?" % random.choice(alternatives)
 
-            acks = ['aws','js','sql','ds']
-            for ack in acks:
-                ack_re = re.compile("\\b"+ack+"\\b")
-                if ack_re.match(result['text'].lower()):
-                    formatted = "Would you mind explaining what %s means? - @jpvelez ghost" % ack
+            # acks = ['aws','js','sql','ds']
+            # for ack in acks:
+            #     ack_re = re.compile("\\b"+ack+"\\b")
+            #     if ack_re.match(result['text'].lower()):
+            #         formatted = "Would you mind explaining what %s means? - @jpvelez ghost" % ack
 
             if formatted:
                 postback = {
