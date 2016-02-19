@@ -3,6 +3,7 @@ import requests
 import websocket
 import json
 import random
+import re
 
 SLACK_AUTH_TOKEN = os.environ['SLACK_AUTH_TOKEN']
 SLACK_REALTIME_ENDPOINT = 'https://slack.com/api/rtm.start'
@@ -54,16 +55,17 @@ if __name__ == "__main__":
 
             bad_phrases = ['you guys', 'hey guys', 'hi guys', 'sup guys', 'guys,', 'guys.']
             if any(bad_phrase in result['text'].lower() for bad_phrase in bad_phrases):
-                alternatives = ['peeps', 'nerds', 'folks', 'y\'all', 'youse']
+                alternatives = ['peeps', 'nerds', 'folks', 'y\'all', 'youse', 'wonderful people']
                 formatted = "did ya mean %s?" % random.choice(alternatives)
 
-            acks = ['aws','js','sql','ds']
-            if any(ack in result['text'].lower() for ack in acks):
-                formatted = "Would you mind explaining what %s means? - @jpvelez ghost" % ack
-            
             if "team_join" == result['type']:
                 formatted = "Welcome to the ChiHackNight Slack, {0}".format(result["user"]["name"])
-    
+            
+            # acks = ['aws','js','sql','ds']
+            # for ack in acks:
+            #     ack_re = re.compile("\\b"+ack+"\\b")
+            #     if ack_re.match(result['text'].lower()):
+            #         formatted = "Would you mind explaining what %s means? - @jpvelez ghost" % ack
 
             if formatted:
                 postback = {
