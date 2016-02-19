@@ -59,7 +59,7 @@ if __name__ == "__main__":
                 formatted = "did ya mean %s?" % random.choice(alternatives)
 
             if "team_join" == result['type']:
-                formatted = "Welcome to the ChiHackNight Slack, {0}".format(result["user"]["name"])
+                formatted = "Welcome to the Chi Hack Night Slack, {0}".format(result["user"]["name"])
             
             # acks = ['aws','js','sql','ds']
             # for ack in acks:
