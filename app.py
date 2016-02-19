@@ -60,7 +60,10 @@ if __name__ == "__main__":
             acks = ['aws','js','sql','ds']
             if any(ack in result['text'].lower() for ack in acks):
                 formatted = "Would you mind explaining what %s means? - @jpvelez ghost" % ack
-
+            
+            if "team_join" == result['type']:
+                formatted = "Welcome to the ChiHackNight Slack, {0}".format(result["user"]["name"])
+    
 
             if formatted:
                 postback = {
