@@ -1,6 +1,17 @@
 # HackNightBot
 
-A Slack bot to generate amazing ideas.
+A [Slack bot](https://api.slack.com/bot-users) for [Chi Hack Night](http://chihacknight.org/). 
+
+### Current functions
+
+@hacknightbot hangs out in the #chihacknight channel and chimes in under one of the following conditions
+
+* anyone types `app me` - responds with a randomized silly app idea in the form of "An app for {verb} the {noun_phrase} of the {agency} & the {org}" - by @evz
+* anyone types `data project` - responds with a randomized silly data project idea in the form of "You could use {dataset_name} ({dataset_link}) to get a better understanding of {service}" - by @evz
+* anyone types some form of 'hey guys' - suggests a random gender neutral alternative to address a group - by @cathydeng
+* _coming soon_ welcome messages to new users - by @hunterowens, @derekeder
+
+Add your own @hacknightbot responses by editing `app.py`!
 
 ### Run it locally
 
