@@ -58,6 +58,9 @@ if __name__ == "__main__":
                 alternatives = ['peeps', 'nerds', 'folks', 'y\'all', 'youse', 'wonderful people']
                 formatted = "did ya mean %s?" % random.choice(alternatives)
 
+            if "team_join" == result['type']:
+                formatted = "Welcome to the Chi Hack Night Slack, {0}".format(result["user"]["name"])
+            
             # acks = ['aws','js','sql','ds']
             # for ack in acks:
             #     ack_re = re.compile("\\b"+ack+"\\b")
